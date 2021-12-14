@@ -7,7 +7,16 @@ class ConversionsController < ApplicationController
     def create
         @conversion = Conversion.new
         @conversion.assign_attributes(conversion_params)
-        @conversion.save
+        if @conversion.save
+            redirect_to conversion_url(@conversion)
+        else
+            flash[:notice] = "Error: could not convert, please try again"
+            redirect_to root_path
+        end
+    end
+
+    def show
+        @conversion = Conversion.find(params[:id])
     end
 
     private
