@@ -1,6 +1,6 @@
 class ConversionsController < ApplicationController
-    def index
-        conversion_service = ConversionService.new
-        @currency_codes = conversion_service.currency_codes
+    def new
+        # conversion_service = Conversion.new
+        # @currency_codes = conversion_service.currency_codes
     end
 end
