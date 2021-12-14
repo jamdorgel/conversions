@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2021_12_14_200133) do
     t.string "final_currency"
     t.float "amount"
     t.float "converted_amount"
+    t.boolean "rate_limited", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

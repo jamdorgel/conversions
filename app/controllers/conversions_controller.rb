@@ -7,11 +7,12 @@ class ConversionsController < ApplicationController
     def create
         @conversion = Conversion.new
         @conversion.assign_attributes(conversion_params)
-        if @conversion.save
-            redirect_to conversion_url(@conversion)
-        else
-            flash[:notice] = "Error: could not convert, please try again"
+        @conversion.save
+        if @conversion.rate_limited
+            flash[:notice] = 'The conversion API has reached its rate limit, please try again in 20 mins'
             redirect_to root_path
+        elsif @conversion.rate_limited == false
+            redirect_to conversion_url(@conversion)
         end
     end
 

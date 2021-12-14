@@ -3,4 +3,6 @@
     <div><%= @conversion.amount %> in <%= @conversion.starting_currency %></div>
     <div>is</div>
     <div><%= @conversion.converted_amount %> in <%= @conversion.final_currency %></div>
+    <div>Would you like to convert another currency?</div>
+    <div><%= link_to "Back to conversion calculator", new_conversion_path %></div>
 </div>
