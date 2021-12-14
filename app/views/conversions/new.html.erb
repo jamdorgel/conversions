@@ -1,18 +1,26 @@
-<div class="blah">
-    <div>
-        Starting Currency:
-        <%= select_tag 'Starting Currency Code', options_for_select(@currency_codes, 'USD') %>
+
+<%= form_for @conversion, url: {action: "create"} do |f| %>
+
+    <div class ="conversion_form">
+        <div>
+            Starting Currency:
+            <%= f.select :starting_currency, @currency_codes, selected: "USD" %>
+        </div>
+
+        <div>
+            Amount:
+            <%= f.number_field(:amount, step: '0.01') %>
+        </div>
+
+        <div>
+            Final Currency:
+            <%= f.select :final_currency, @currency_codes, selected: "CAD" %>
+        </div>
+
+        <div>
+            <%= f.submit "Convert" %>
+        </div>
     </div>
-    <div>
-        Amount:
-        <%= number_field(:amount, step: '0.01')%>
-    </div>
-    <div>
-        Final Currency:
-        <%= select_tag 'Final Currency Code', options_for_select(@currency_codes, 'CAD') %>
-    </div>
-    <div>
-        Result:
-    </div>
-    <button>Submit</button>
-</div>
+
+<% end %>
+
