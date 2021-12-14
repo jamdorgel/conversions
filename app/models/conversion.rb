@@ -1,22 +1,13 @@
 class Conversion < ApplicationRecord
-    # attr_reader :result, :starting_currency, :amount, :final_currency, :currency_codes
+    def get_conversion_data
+        result = HTTParty.get("https://open.er-api.com/v6/latest/#{self.starting_currency}")
+        exchange_rate = result['rates'][self.final_currency]
+        self.converted_amount = (self.amount * exchange_rate).round(2)
+        self.save
+    end
 
-    # def initialize(starting_currency = nil, amount = nil, final_currency = nil)
-    #     @starting_currency = starting_currency
-    #     @amount = amount
-    #     @final_currency = final_currency
-    #     # Add in rate limit detection & behaviour in this step
-    #     if @starting_currency
-    #         @result = HTTParty.get("https://open.er-api.com/v6/latest/#{@starting_currency}")
-    #     else
-    #         @result = HTTParty.get("https://open.er-api.com/v6/latest")
-    #     end
-
-    #     @currency_codes = @result['rates'].keys.sort
-    # end
-
-    # def conversion
-    #     exchange_rate = @result['rates'][@final_currency]
-    #     @amount * exchange_rate
-    # end
+    def self.currency_codes
+        result = HTTParty.get("https://open.er-api.com/v6/latest")
+        result['rates'].keys.sort
+    end
 end
