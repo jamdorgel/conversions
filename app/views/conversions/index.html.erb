@@ -1,3 +1,18 @@
-<div>
-testo
+<div class="blah">
+    <div>
+        Starting Currency:
+        <%= select_tag 'Starting Currency Code', options_for_select(@currency_codes, 'USD') %>
+    </div>
+    <div>
+        Amount:
+        <%= number_field(:amount, step: '0.01')%>
+    </div>
+    <div>
+        Final Currency:
+        <%= select_tag 'Final Currency Code', options_for_select(@currency_codes, 'CAD') %>
+    </div>
+    <div>
+        Result:
+    </div>
+    <button>Submit</button>
 </div>
