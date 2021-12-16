@@ -1,8 +1,10 @@
-<div>
-    <div>CONVERSION RESULT:</div>
-    <div><%= @conversion.amount %> in <%= @conversion.starting_currency %></div>
-    <div>is</div>
-    <div><%= @conversion.converted_amount %> in <%= @conversion.final_currency %></div>
-    <div>Would you like to convert another currency?</div>
-    <div><%= link_to "Back to conversion calculator", new_conversion_path %></div>
+<div class='content-wrapper'>
+    <div class="content">
+        <h2>CONVERSION RESULT:</h2>
+
+        <div><%= @conversion.starting_currency %> <%= @conversion.amount %> = <%= @conversion.final_currency %> <%= @conversion.converted_amount %></div>
+        <br>
+        <div class="field">Would you like to convert another currency?</div>
+        <div><%= button_to "Back to conversion calculator", new_conversion_path, :method => "get" %></div>
+    </div>
 </div>

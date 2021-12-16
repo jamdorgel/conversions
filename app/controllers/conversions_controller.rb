@@ -9,7 +9,7 @@ class ConversionsController < ApplicationController
         @conversion.assign_attributes(conversion_params)
         @conversion.save
         if @conversion.rate_limited
-            flash[:notice] = 'The conversion API has reached its rate limit, please try again in 20 mins'
+            flash[:notice] = '* The conversion API has reached its rate limit, please try again in 20 mins *'
             redirect_to root_path
         elsif @conversion.rate_limited == false
             redirect_to conversion_url(@conversion)

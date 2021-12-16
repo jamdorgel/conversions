@@ -1,29 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<div> Currency Calculator</div>
+<div class='content-wrapper'>
+    <div class="content">
 
-<%= form_for @conversion, url: {action: "create"} do |f| %>
+        <h2> Currency Calculator</h2>
 
-    <div class ="conversion_form">
-        <div>
-            Starting Currency:
-            <%= f.select :starting_currency, @currency_codes, selected: "USD" %>
-        </div>
+        <%= form_for @conversion, url: {action: "create"} do |f| %>
 
-        <div>
-            Amount:
-            <%= f.number_field(:amount, step: '0.01') %>
-        </div>
+                <div class="field">
+                    Starting Currency:
+                    <%= f.select :starting_currency, @currency_codes, selected: "USD" %>
+                </div>
 
-        <div>
-            Final Currency:
-            <%= f.select :final_currency, @currency_codes, selected: "CAD" %>
-        </div>
+                <div class="field">
+                    Amount:
+                    <%= f.number_field(:amount, step: '0.01') %>
+                </div>
 
-        <div>
-            <%= f.submit "Convert" %>
-        </div>
+                <div class="field">
+                    Final Currency:
+                    <%= f.select :final_currency, @currency_codes, selected: "CAD" %>
+                </div>
+
+                <div>
+                    <%= f.submit "Convert" %>
+                </div>
+
+        <% end %>
+
     </div>
-
-<% end %>
-
+</div>
